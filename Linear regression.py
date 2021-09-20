@@ -48,7 +48,7 @@ revenue = [52, 74, 79, 95, 115, 110, 129, 126, 147, 146, 156, 184]
 #get m, b for our real data
 b, m = gradient_descent(months, revenue, 0.01, 1000)
 
-#Uncomment the lines below to see the line you've settled upon!
+
 y = [m*x + b for x in months]
 
 #build model that describe data
