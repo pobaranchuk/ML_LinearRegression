@@ -45,7 +45,7 @@ def gradient_descent(x, y, learning_rate, num_iterations):
 months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 revenue = [52, 74, 79, 95, 115, 110, 129, 126, 147, 146, 156, 184]
 
-#get m, b
+#get m, b for our real data
 b, m = gradient_descent(months, revenue, 0.01, 1000)
 
 #Uncomment the lines below to see the line you've settled upon!
