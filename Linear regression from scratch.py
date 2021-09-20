@@ -1,5 +1,12 @@
 import seaborn as sbn
 import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+
+# Linear Regression in nutshell //- ---------------------------------------------------------- -//
+
 # Linear function: y = mx + b
 
 #Gradient Descent for Intercept
@@ -41,7 +48,9 @@ def gradient_descent(x, y, learning_rate, num_iterations):
   return b, m
 
 
-#example linear function 
+
+# First example of linear function //- ---------------------------------------------------------- -//
+'''
 months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 revenue = [52, 74, 79, 95, 115, 110, 129, 126, 147, 146, 156, 184]
 
@@ -56,3 +65,42 @@ plt.plot(months, revenue, "o")
 plt.plot(months, y)
 
 plt.show()
+'''
+# Second example of linear function //- ---------------------------------------------------------- -//
+
+'''
+df = pd.read_csv("new_data.csv")
+
+
+X = df["height"]
+y = df["weight"]
+
+
+#Build our second model 
+plt.plot(X, y, 'o')
+
+b, m = gradient_descent(X, y, num_iterations = 1000, learning_rate = 0.0001)
+y_predictions = [ i * m + b for i in X]
+plt.plot(X, y_predictions)
+
+plt.show()
+'''
+
+# Third example of linear function with sklearn libraty//- ---------------------------------------------------------- -//
+
+#We have imported a dataset of soup sales data vs temperature.
+temperature = np.array(range(60, 100, 2))
+temperature = temperature.reshape(-1, 1)
+sales = [65, 58, 46, 45, 44, 42, 40, 40, 36, 38, 38, 28, 30, 22, 27, 25, 25, 20, 15, 5]
+
+plt.plot(temperature, sales, 'o')
+
+#The .fit() method gives the model the line_fitter.coef_, which contains the slope and line_fitter.intercept_, which contains the intercept
+line_fitter = LinearRegression().fit(temperature, sales)
+
+#.predict() function to pass in x-values and receive the y-values that this line would predict
+sales_predict = line_fitter.predict(temperature)
+
+plt.plot(temperature, sales_predict)
+plt.show()
+
