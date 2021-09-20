@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 from sklearn.linear_model import LinearRegression
+from sklearn.datasets import load_boston
 
 
 # Linear Regression in nutshell //- ---------------------------------------------------------- -//
@@ -87,7 +88,7 @@ plt.show()
 '''
 
 # Third example of linear function with sklearn libraty//- ---------------------------------------------------------- -//
-
+"""
 #We have imported a dataset of soup sales data vs temperature.
 temperature = np.array(range(60, 100, 2))
 temperature = temperature.reshape(-1, 1)
@@ -103,4 +104,30 @@ sales_predict = line_fitter.predict(temperature)
 
 plt.plot(temperature, sales_predict)
 plt.show()
+"""
 
+# Fourth example of linear function //- ---------------------------------------------------------- -//
+
+# We’ve loaded in the Boston housing dataset.
+# We made the X values the nitrogen oxides concentration (parts per 10 million), and the y values the housing prices.
+
+boston = load_boston()
+df = pd.DataFrame(boston.data, columns = boston.feature_names)
+
+# Set the x-values to the nitrogen oxide concentration:
+X = df[['NOX']]
+# Y-values are the prices:
+y = boston.target
+
+#do linear regression on this:
+
+linear = LinearRegression().fit(X, y)
+y_predicted = linear.predict(X)
+
+plt.scatter(X, y, alpha=0.4)
+# Plot line here:
+plt.plot(X,y_predicted, alpha=0.9 )
+plt.title("Boston Housing Dataset")
+plt.xlabel("Nitric Oxides Concentration")
+plt.ylabel("House Price ($)")
+plt.show()
