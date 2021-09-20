@@ -1,6 +1,6 @@
 import seaborn as sbn
 import matplotlib.pyplot as plt
-# y = mx + b
+# Linear function: y = mx + b
 
 #Gradient Descent for Intercept
 def get_gradient_at_b(x, y, b, m):
